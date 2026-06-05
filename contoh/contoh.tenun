@@ -1,0 +1,5 @@
+impor "rute";
+
+cetak(rute_cocok("/user/:id", "/user/42"));
+cetak(rute_param("/user/:id", "/user/42", "id"));
+cetak(rute_cocok("/user/:id", "/post/42"));

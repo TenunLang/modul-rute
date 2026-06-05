@@ -1,0 +1,10 @@
+{
+  "nama": "rute",
+  "versi": "0.1.0",
+  "deskripsi": "Router untuk Tenun: cocokkan pola jalur (/user/:id) dan ambil parameter.",
+  "lisensi": "MIT",
+  "penulis": "TenunLang",
+  "berkas": "src/rute.tenun",
+  "kataKunci": ["router", "rute", "web", "http"],
+  "butuh": {}
+}

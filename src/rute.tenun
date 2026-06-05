@@ -1,0 +1,39 @@
+// Modul Rute (router) untuk Tenun.
+// Cocokkan pola jalur seperti "/user/:id" dan ambil parameternya.
+// Dibangun di atas builtin inti: pisah, mulaiDengan, cari, potong, panjang.
+
+// Buang query string dari jalur ("/a?x=1" -> "/a").
+fungsi rute_jalur(jalur: teks): teks {
+    biar q: bulat = cari(jalur, "?");
+    kalau q < 0 { kembali jalur; }
+    kembali potong(jalur, 0, q);
+}
+
+// Apakah jalur cocok dengan pola? Segmen ":nama" cocok dengan apa pun.
+fungsi rute_cocok(pola: teks, jalur: teks): bool {
+    biar pp: []teks = pisah(pola, "/");
+    biar jp: []teks = pisah(rute_jalur(jalur), "/");
+    kalau panjang(pp) != panjang(jp) { kembali salah; }
+    untuk i dari 0 sampai panjang(pp) {
+        biar seg: teks = pp[i];
+        kalau mulaiDengan(seg, ":") {
+            // parameter — cocok apa saja
+        } lain {
+            kalau seg != jp[i] { kembali salah; }
+        }
+    }
+    kembali benar;
+}
+
+// Ambil nilai parameter bernama dari jalur sesuai pola. "" bila tidak ada.
+fungsi rute_param(pola: teks, jalur: teks, nama: teks): teks {
+    biar pp: []teks = pisah(pola, "/");
+    biar jp: []teks = pisah(rute_jalur(jalur), "/");
+    kalau panjang(pp) != panjang(jp) { kembali ""; }
+    untuk i dari 0 sampai panjang(pp) {
+        kalau pp[i] == ":" + nama {
+            kembali jp[i];
+        }
+    }
+    kembali "";
+}
