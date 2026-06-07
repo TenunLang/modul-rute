@@ -1,0 +1,7 @@
+impor "../src/rute.tenun";
+
+tegas(rute_cocok("/user/:id", "/user/42"), "pola param cocok");
+tegas(!rute_cocok("/user/:id", "/post/42"), "segmen beda tak cocok");
+tegas(!rute_cocok("/a/b", "/a"), "jumlah segmen beda tak cocok");
+tegasSama(rute_param("/user/:id", "/user/42", "id"), "42", "ambil param id");
+tegasSama(rute_jalur("/a?x=1"), "/a", "buang query string");

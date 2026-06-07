@@ -20,3 +20,5 @@ jobs:
           printf 'impor "rute";\n' > cek.tenun
           "$HOME/.tenun/bin/tenun" run cek.tenun
           echo "modul rute valid"
+      - name: Uji unit
+        run: "$HOME/.tenun/bin/tenun" check .
